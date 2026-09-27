@@ -7,6 +7,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       ...
     }:
@@ -24,5 +25,7 @@
       };
 
       packages = forAllSystems (pkgs: import ./default.nix { inherit pkgs; });
+
+      nixosModules.default = import ./nixos-module.nix { inherit self; };
     };
 }
